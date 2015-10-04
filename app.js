@@ -1,0 +1,179 @@
+(function() {
+	var app = angular.module("filmStore", ["film-directives"]);
+	
+	app.controller("FilmController", function() {
+		this.allFilms = allFilms;
+		this.favFilms = favFilms;
+		this.wishList = wishList;
+		this.shoppingCart = shoppingCart;
+		
+		// If the user wants to display the code.
+		this.showCode = false;
+		// What code should be shown.
+		this.codeIndex = 0;
+		
+		// layoutDirections is an array of flex-directions. When you press the Direction button new directions are taken from that array.
+		var directionIndex = 0;
+		
+		// The flex-direction for the div containing all lists.
+		this.getLayoutDirection = function(){
+			
+			return layoutDirections[directionIndex].layout;
+		};
+		
+		// The flex-direction for individual lists.
+		this.getListDirection = function() {
+			
+			return layoutDirections[directionIndex].list;
+		};
+		
+		// The direction the arrow should be pointing.
+		this.getArrowDirection = function() {
+			
+			return layoutDirections[directionIndex].arrow;
+		};
+		
+		// The name of the flex-direction. Displayed above the lists.
+		this.getFlexDirection = function() {
+			
+			return angular.uppercase(layoutDirections[directionIndex].flexDirection);
+		};
+		
+		// Change flex-direction when pressing the Direction button.
+		this.changeLayoutDirection = function() {
+			
+			directionIndex++;
+			
+			if (directionIndex >= layoutDirections.length) {
+				directionIndex = 0;
+			}
+		};
+		
+		// When show code button is pressed.
+		this.setShowCode = function() {
+			
+			this.showCode = !this.showCode;
+		};
+		
+		// The code is several different pages. Change which one should be displayed with the Next and Prev buttons.
+		// The Next and Prev buttons are only visible if the Show Code buttons has been pressed.
+		this.changeCodeIndex = function(value) {
+			
+			this.codeIndex += value;
+			
+			if (this.codeIndex > 4)
+				this.codeIndex = 0;
+				
+			if (this.codeIndex < 0)
+				this.codeIndex = 4;
+		};
+		
+		// Functions for adding a film to a certain list. If the film object is already in the list it isn't added again.
+		this.addFilmToFav = function(film) {
+			
+			if (this.favFilms.indexOf(film) < 0) {
+				this.favFilms.push(film);
+			}
+		};
+		
+		this.addFilmToWishList = function(film) {
+			
+			if (this.wishList.indexOf(film) < 0)
+				this.wishList.push(film);
+		};
+		
+		this.addFilmToShoppingCart = function(film) {
+			
+			if (this.shoppingCart.indexOf(film) < 0)
+				this.shoppingCart.push(film);
+		};
+		
+		this.removeFilmFromList = function(film, listName) {
+			
+			if (listName == "fav") {
+				
+				var filmIndex = favFilms.indexOf(film);
+				this.favFilms.splice(filmIndex, 1);
+			}
+			else if (listName == "wish") {
+				
+				var filmIndex = wishList.indexOf(film);
+				this.wishList.splice(filmIndex, 1);
+			}
+			else if (listName == "cart") {
+				
+				var filmIndex = shoppingCart.indexOf(film);
+				this.shoppingCart.splice(filmIndex, 1);
+			}
+		};
+		
+		// So the lists (except the list with all films) aren't empty at the beginning.
+		this.createListsAtStart = function() {
+			
+			this.addFilmToFav(this.allFilms[1]);
+			this.addFilmToFav(this.allFilms[2]);
+			this.addFilmToFav(this.allFilms[4]);
+			
+			this.addFilmToWishList(this.allFilms[0]);
+			this.addFilmToWishList(this.allFilms[5]);
+			
+			this.addFilmToShoppingCart(this.allFilms[3]);
+		};
+		
+		this.createListsAtStart();
+	});
+	
+	// Class names mapping to the CSS. HTML elements get different classnames when you change the flex-direction with the Direction button.
+	var layoutDirections = [
+	{flexDirection: "row", layout: "leftToRight", list: "vertical", arrow: "pointingRight"},
+	{flexDirection: "row-reverse", layout: "rightToLeft", list: "vertical", arrow: "pointingLeft"},
+	{flexDirection: "column", layout: "topToBottom", list: "horizontal", arrow: "pointingDown"},
+	{flexDirection: "column-reverse", layout: "bottomToTop", list: "horizontal", arrow: "pointingUp"}];
+	
+	// The four lists.
+	var allFilms = [
+		{ title: "Comedy 1", genre: "comedy", hasSeenIt: false, price: 2, image: "images/dumb.jpg"},
+		{ title: "Comedy 2", genre: "comedy", hasSeenIt: true, price: 2.5, image: "images/twins.jpg"},
+		{ title: "Action 1", genre: "action", hasSeenIt: false, price: 100, image: "images/terminator.jpg"},
+		{ title: "Action 2", genre: "action", hasSeenIt: false, price: 0.40, image: "images/diehard.jpg"},
+		{ title: "Horror 1", genre: "horror", hasSeenIt: false, price: 0, image: "images/scream.jpg"},
+		{ title: "Horror 2", genre: "horror", hasSeenIt: false, price: 111.11, image: "images/exorcist.jpg"},
+	];
+	
+	var favFilms = [];
+	var wishList = [];
+	var shoppingCart = [];
+	
+	/*var allFilms = [
+		{ title: "Comedy 1", genre: "comedy", hasSeenIt: false, favourite: false, iwantit: true, price: 2, image: "images/dumb.jpg"},
+		{ title: "Comedy 2", genre: "comedy", hasSeenIt: true, favourite: true, iwantit: false, price: 2.5, image: "images/twins.jpg"},
+		{ title: "Action 1", genre: "action", hasSeenIt: false, favourite: true, iwantit: false, price: 100, image: "images/terminator.jpg"},
+		{ title: "Action 2", genre: "action", hasSeenIt: false, favourite: false, iwantit: false, price: 0.40, image: "images/diehard.jpg"},
+		{ title: "Horror 1", genre: "horror", hasSeenIt: false, favourite: true, iwantit: false, price: 0, image: "images/scream.jpg"},
+		{ title: "Horror 2", genre: "horror", hasSeenIt: false, favourite: false, iwantit: true, price: 111.11, image: "images/exorcist.jpg"},
+	];
+	
+	var shoppingCart = [
+		{ title: "Action 2", genre: "action", hasSeenIt: false, favourite: false, iwantit: false, price: 0.40, image: "images/diehard.jpg"},// inShoppingCart: true}
+	];*/
+	
+	//Flex-wrap, filmer som egna flex.items, wrap för att försöka få plats med allt på samma sida, knapp för att slå på det.
+	//Order (flex) på filmerna i favoritlistor. Skriv in själv.	
+	//Add new list next to the main list.
+	
+	/*var directionClass = "leftToRight";
+	app.controller("LayoutDirectionController", function() {
+	});*/
+	
+	/*
+	app.controller("FilmController", ["$http", function($http) {
+		//this.films = list;
+		var store = this;
+		store.films = [];
+		
+		$http.get("/film-list.json").success(function(data) {
+			store.films = data;
+		});
+	}]);
+	*/
+})();

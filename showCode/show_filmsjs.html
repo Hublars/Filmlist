@@ -1,0 +1,47 @@
+<div style="white-space: pre; font-weight: bold">
+<h3>films.js</h3>
+(function() {
+ 	var app = angular.module(&quot;film-directives&quot;, []);
+
+ 	app.directive(&quot;filmitem&quot;, function() {
+ 		return {
+ 			restrict: &quot;E&quot;,
+ 			templateUrl: &quot;filmitem.html&quot;
+ 		};
+ 	});
+
+ 	app.directive(&quot;showflexcss&quot;, function() {
+ 		return {
+ 			restrict: &quot;E&quot;,
+ 			templateUrl: &quot;showCode/show_flex_css.html&quot;
+ 		};
+ 	});
+
+ 	app.directive(&quot;showindex&quot;, function() {
+ 		return {
+ 			restrict: &quot;E&quot;,
+ 			templateUrl: &quot;showCode/show_index.html&quot;
+ 		};
+ 	});
+
+ 	app.directive(&quot;showappjs&quot;, function() {
+ 		return {
+ 			restrict: &quot;E&quot;,
+ 			templateUrl: &quot;showCode/show_appjs.html&quot;
+ 		};
+ 	});
+
+ 	app.directive(&quot;showfilmsjs&quot;, function() {
+ 		return {
+ 			restrict: &quot;E&quot;,
+ 			templateUrl: &quot;showCode/show_filmsjs.html&quot;
+ 		};
+ 	});
+
+ 	app.directive(&quot;showfilmitem&quot;, function() {
+ 		return {
+ 			restrict: &quot;E&quot;,
+ 			templateUrl: &quot;showCode/show_filmitem.html&quot;
+ 		};
+ 	});
+ })();

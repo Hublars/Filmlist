@@ -1,0 +1,6 @@
+<div class="filmList" ng-class="{{'store.getListDirection()'}}">
+	<h2>Wishlist</h2>
+	<div ng-repeat="film in store.films" ng-show="film.iwantit">
+		<title-genre></title-genre>
+	</div>
+</div>

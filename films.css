@@ -1,0 +1,101 @@
+body {
+	/*border: 2px solid green;*/
+}
+
+#topRow {
+	margin: 10px;
+	display: flex;
+	justify-content: space-around;
+}
+
+#arrow {
+	width: 50px;
+	height: 50px;
+	background-image: url("images/arrowRed.png");
+}
+.pointingRight {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+.pointingLeft {
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+.pointingDown {
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+.pointingUp {
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+#allLists {
+	width: 100%;
+	height: 100%;
+	/*border: 2px solid red;*/
+	/*display: -ms-flexbox;*/
+	display: flex;
+	background-color: rgba(240, 240, 240, 1);
+	border-top: 10px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 10px solid rgba(0, 0, 0, 0.1);
+}
+.leftToRight {
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+}
+.rightToLeft {
+	flex-direction: row-reverse;
+	justify-content: center;
+	align-items: flex-start;
+}
+.topToBottom {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.bottomToTop {
+	flex-direction: column-reverse;
+	justify-content: center;
+	align-items: center;
+}
+
+.filmList {
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid black;
+	border-radius: 10px;
+	display: flex;
+	background-color: white;
+}
+.vertical {
+	flex-direction: column;
+}
+.horizontal {
+	flex-direction: row;
+}
+
+.filmItem > div > div {
+	border-bottom: solid 10px lightgrey;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="filmStore">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Film</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+		<script type="text/javascript" src="films.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+		<link rel="stylesheet" href="films.css" />
+	</head>
+	<body ng-controller="FilmController as store">
+		
+		<h2 style="margin: 0">Page made with <a href="https://angularjs.org/" target="_blank">Angular js</a>, layout with <a href="http://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">Flexbox</a>.</h2>
+		<h3>Code at bottom of page.</h3>
+		<a href="../index.html">To Start page</a>
+		
+		<!-- The row above the lists. Include arrow and text to show flex-direction and a button to change direction. -->
+		<div id="topRow">
+			<div id="arrow" ng-class="{{'store.getArrowDirection()'}}" style="float: left"></div>
+			<h3 style="float: left; margin-left: 10px">flex-direction: {{store.getFlexDirection()}}</h3>
+			<input type="button" value="Direction" ng-click="store.changeLayoutDirection()" />
+		</div>
+		
+		<!-- A container for all lists. -->
+		<div id="allLists" ng-class="{{'store.getLayoutDirection()'}}">
+			
+			<!-- A list containing all movies. -->
+			<div class="filmList" ng-class="{{'store.getListDirection()'}}">
+				<h2>All Movies</h2>
+				<div ng-repeat="film in store.allFilms">
+					<filmitem class="filmItem" ng-init="showPrice=true; showAddToFavButton=true; showAddToWishlistButton=true; hideRemoveButton=true"></filmitem>
+				</div>
+			</div>
+			
+			<!-- A list for favourite movies. -->
+			<div class="filmList" ng-class="{{'store.getListDirection()'}}">
+				<h2>Favourites</h2>
+				<div ng-repeat="film in store.favFilms">
+					<filmitem class="filmItem" ng-init="listName='fav'"></filmitem>
+				</div>
+			</div>
+			
+			<!-- A list for films you want. -->
+			<div class="filmList" ng-class="{{'store.getListDirection()'}}">
+				<h2>Wishlist</h2>
+				<div ng-repeat="film in store.wishList">
+					<filmitem class="filmItem" ng-init="listName='wish'"></filmitem>
+				</div>
+			</div>
+			
+			<!-- Your shopping cart. -->
+			<div class="filmList" ng-class="{{'store.getListDirection()'}}">
+				<h2>Shopping Cart</h2>
+				<div ng-repeat="film in store.shoppingCart">
+					<filmitem class="filmItem" ng-init="hideBuyButton=true; showPrice=true; listName='cart'"></filmitem>
+				</div>
+			</div>
+		</div>
+		
+		<!-- At the bottom of the page you can see the code. -->
+		<div style="margin: 50px 0 100px 100px">
+			<button style="margin-top: 0; padding-bottom: 0" ng-click="store.setShowCode()">Show Code</button>
+			<button ng-show="store.showCode" ng-click="store.changeCodeIndex(-1)">Prev</button>
+			<button ng-show="store.showCode" ng-click="store.changeCodeIndex(1)">Next</button>
+			<showflexcss ng-show="store.showCode && store.codeIndex === 0"></showflexcss>
+			<showindex ng-show="store.showCode && store.codeIndex === 1"></showindex>
+			<showappjs ng-show="store.showCode && store.codeIndex === 2"></showappjs>
+			<showfilmsjs ng-show="store.showCode && store.codeIndex === 3"></showfilmsjs>
+			<showfilmitem ng-show="store.showCode && store.codeIndex === 4"></showfilmitem>
+		</div>
+		
+	</body>
+</html>

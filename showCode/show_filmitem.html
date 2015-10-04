@@ -1,0 +1,18 @@
+<div style="white-space: pre; font-weight: bold">
+<h3>filmitem.html</h3>
+&lt;div&gt;
+ 	&lt;!-- A films title, genre and a picture. A films price isn't included in all lists. --&gt;
+ 	&lt;h3 style=&quot;margin: 0&quot;&gt;{{film.title}}&lt;/h3&gt;
+ 	&lt;h4 style=&quot;margin: 0&quot;&gt;Genre: {{film.genre}}&lt;/h4&gt;
+ 	&lt;img src=&quot;{{film.image}}&quot; style=&quot;float: left; margin: 0&quot; /&gt;
+ 	&lt;h4 ng-if=&quot;showPrice&quot; style=&quot;float: left; clear: left; margin: 0&quot;&gt;Price: {{film.price | currency}}&lt;/h4&gt;
+
+ 	&lt;!-- The buttons. Not all buttons are included in all lists. --&gt;
+ 	&lt;div style=&quot;float: left; clear: left&quot;&gt;
+ 		&lt;button ng-hide=&quot;hideBuyButton&quot; ng-click=&quot;store.addFilmToShoppingCart(film)&quot;&gt;Buy&lt;/button&gt;
+ 		&lt;button ng-if=&quot;showAddToFavButton&quot; ng-click=&quot;store.addFilmToFav(film)&quot;&gt;Fav&lt;/button&gt;
+ 		&lt;button ng-if=&quot;showAddToWishlistButton&quot; ng-click=&quot;store.addFilmToWishList(film)&quot;&gt;Wish&lt;/button&gt;
+ 		&lt;button ng-hide=&quot;hideRemoveButton&quot; ng-click=&quot;store.removeFilmFromList(film, listName)&quot;&gt;Remove&lt;/button&gt;
+ 	&lt;/div&gt;
+ &lt;/div&gt;
+</div>

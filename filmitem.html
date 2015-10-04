@@ -1,0 +1,15 @@
+<div>
+	<!-- A films title, genre and a picture. A films price isn't included in all lists. -->
+	<h3 style="margin: 0">{{film.title}}</h3>
+	<h4 style="margin: 0">Genre: {{film.genre}}</h4>
+	<img src="{{film.image}}" style="float: left; margin: 0" />
+	<h4 ng-if="showPrice" style="float: left; clear: left; margin: 0">Price: {{film.price | currency}}</h4>
+	
+	<!-- The buttons. Not all buttons are included in all lists. -->
+	<div style="float: left; clear: left">
+		<button ng-hide="hideBuyButton" ng-click="store.addFilmToShoppingCart(film)">Buy</button>
+		<button ng-if="showAddToFavButton" ng-click="store.addFilmToFav(film)">Fav</button>
+		<button ng-if="showAddToWishlistButton" ng-click="store.addFilmToWishList(film)">Wish</button>
+		<button ng-hide="hideRemoveButton" ng-click="store.removeFilmFromList(film, listName)">Remove</button>
+	</div>
+</div>

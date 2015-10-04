@@ -1,0 +1,8 @@
+[
+	{ "title": "Comedy 1", "genre": "comedy", "hasSeenIt": false, "favourite": false, "iwantit": true, "price": 2},
+	{ "title": "Comedy 2", "genre": "comedy", "hasSeenIt": true, "favourite": true, "iwantit": false, "price": 2.5},
+	{ "title": "Action 1", "genre": "action", "hasSeenIt": false, "favourite": true, "iwantit": false, "price": 100},
+	{ "title": "Action 2", "genre": "action", "hasSeenIt": false, "favourite": false, "iwantit": false, "price": 0.40},
+	{ "title": "Horror 1", "genre": "horror", "hasSeenIt": false, "favourite": true, "iwantit": false, "price": 0},
+	{ "title": "Horror 2", "genre": "horror", "hasSeenIt": false, "favourite": false, "iwantit": true, "price": 111.11},
+]
